@@ -23,7 +23,8 @@ CMD is AA AB AC AD 问询ABCD四个足端状态，低四位为地址，只有地
 <img width="1106" height="1076" alt="image" src="https://github.com/user-attachments/assets/c6f8fcf7-07a8-4570-abbc-a0b098e99043" />
 
 ## 非接触状态
-<img width="1074" height="754" alt="image" src="https://github.com/user-attachments/assets/9c5b12dc-9853-4ecb-a763-604a29d4b6cb" />
+<img width="892" height="876" alt="image" src="https://github.com/user-attachments/assets/e3c3b7ad-f672-4566-8a1a-007e0311c517" />
+
 
 ## 接触且处于加载状态
 <img width="736" height="630" alt="image" src="https://github.com/user-attachments/assets/885c3f39-f12a-4431-b884-68d1d40bb4ba" />
