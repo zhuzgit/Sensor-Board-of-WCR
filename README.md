@@ -9,9 +9,9 @@
 CMD is AA AB AC AD 问询ABCD四个足端状态，低四位为地址，只有地址正确才应答
 
 ## 返回状态：低四位为地址
-1. 非接触：FA FB FC FD （足端和墙壁存在间隙）
-2. 加载（接触）：EA EB EC ED （Enable：足端和墙壁接触，且具有吸附力）
-3. 卸载（接触）：DA DB DC DD （Disable：足端和墙壁接触，但无吸附力）
+1. 非接触：K1亮灯：FA FB FC FD （足端和墙壁存在间隙）
+2. 加载（接触）：K2亮灯：EA EB EC ED （Enable：足端和墙壁接触，且具有吸附力）
+3. 卸载（接触）：K3亮灯：DA DB DC DD （Disable：足端和墙壁接触，但无吸附力）
 4. 未知状态：AA AB AC AD （need Ask：状态未知，需要进一步查询）
   
 注意：
