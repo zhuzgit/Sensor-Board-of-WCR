@@ -12,6 +12,8 @@ typedef unsigned long u32;
 typedef unsigned char uint8_t;
 typedef unsigned int uint16_t;
 
+#define xs 0
+
 #define K1 P33
 #define K2 P13
 #define K3 P03
@@ -210,12 +212,12 @@ void CANInit() {
 /*****************************************************************************/
 //---------------- UART config ----------------//
 #define MAIN_Fosc 24000000L  // 定义主时钟
-#define Baudrate (65536 - MAIN_Fosc / 460800 / 4)
-#define UART1_BUF_LENGTH 16
+#define Baudrate (65536 - MAIN_Fosc / 115200 / 4)
+//#define UART1_BUF_LENGTH 16
 bit B_TX1_Busy;
 u8 TX1_Cnt;
 u8 RX1_Cnt;
-u8 RX1_Buffer[UART1_BUF_LENGTH];
+//u8 RX1_Buffer[UART1_BUF_LENGTH];
 
 
 
@@ -649,7 +651,7 @@ void ComputeEulerAngles_AccelOnly(int ax, int ay, int az,
 void UART1_int(void) interrupt 4 {
   if (RI) {
     RI = 0;
-if(SBUF==0xaa)UART_SendChar(ss|Baddr);		
+if(SBUF==(0xa0|Baddr))UART_SendChar(ss|Baddr);		
  //   RX1_Buffer[RX1_Cnt] = SBUF;
  //  if (++RX1_Cnt >= UART1_BUF_LENGTH)
       RX1_Cnt = 0;
@@ -693,11 +695,11 @@ void main(void) {
   TX1_BUF[7] = 0x18;
 */
   EA = 1;
-  PrintString("Initializing...\r\n");
+  if(xs==1)PrintString("Initializing...\r\n");
 
-  printf("\n--- Probe AD0=0 (0x68) ---\n");
+  if(xs==1)printf("\n--- Probe AD0=0 (0x68) ---\n");
   id = WHO_AM_I_Debug(0xD0, 0xD1);
-  printf("WHO_AM_I(0x68) = 0x%02X\n", id);
+  if(xs==1)printf("WHO_AM_I(0x68) = 0x%02X\n", id);
 
   Delay10ms();
   UART_SendChar(0x55);
@@ -709,11 +711,11 @@ void main(void) {
     delay_ms(80);
 
     if (i == skip) {
-      printf("--- IC %d Skipped!---\n", i);
+      if(xs==1)printf("--- IC %d Skipped!---\n", i);
     } else {
 
       if (s11 == 1 && i > 10) {
-        printf("--- (S11) IC %d Skipped!---\n", i);
+        if(xs==1)printf("--- (S11) IC %d Skipped!---\n", i);
       } else {
         ReadNbyte(AK09911C_WIA1, &id, 1);
         if (id != 0x48)
@@ -725,7 +727,7 @@ void main(void) {
           while (1)
             ;
 
-        printf("--- IC %d OK!---\n", i);
+        if(xs==1)printf("--- IC %d OK!---\n", i);
       }
     }
 
@@ -758,7 +760,7 @@ void main(void) {
     AK09911C_Init();
   }
 
-  PrintString("Initialization completed.\r\n");
+  if(xs==1)PrintString("Initialization completed.\r\n");
   delay_ms(100);
 
   while (1) {
